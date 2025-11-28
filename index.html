@@ -1,0 +1,26 @@
+int irSensor = 7;     // IR sensor output pin
+int redLED = 4;       // Red LED pin
+int greenLED = 3;     // Green LED pin
+int sensorValue = 0;  // To store sensor reading
+
+void setup() {
+  pinMode(irSensor, INPUT);
+  pinMode(redLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  sensorValue = digitalRead(irSensor);
+  Serial.println(sensorValue);
+
+  if (sensorValue == LOW) {  // Object detected
+    digitalWrite(redLED, HIGH);
+    digitalWrite(greenLED, LOW);
+  } else {                   // No object detected
+    digitalWrite(redLED, LOW);
+    digitalWrite(greenLED, HIGH);
+  }
+
+  delay(200);
+}
